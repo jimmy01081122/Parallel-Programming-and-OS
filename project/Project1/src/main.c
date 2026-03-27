@@ -1,3 +1,9 @@
+/*
+ *  main.c
+ *  version 1.0
+ *  Created on: 2025/3/27
+ *  Author: Jimmy 
+*/
 #include <stdio.h>
 #include <stdlib.h> 
 #include <time.h>
@@ -33,7 +39,7 @@ int main () {
     // the return value is also stored 
     // in the memory pointed to by tloc.
     srand (time(NULL)); // seed the random number generator with current time
-    for (int i = 0; i < total_element; i++) {
+    for (size_t i = 0; i < total_element; i++) {
         // RAND_MAX is a constant defined in stdlib.h,
         // which represents the maximum value returned by the rand function
         matrix[i] = (float)rand() / RAND_MAX; // Initialize with some values, e.g., 0.0, 1.0, ..., 99.0, then repeat

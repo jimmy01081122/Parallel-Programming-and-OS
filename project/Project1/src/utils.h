@@ -1,3 +1,9 @@
+/*
+ *  utils.h
+ *  version 1.0
+ *  Created on: 2025/3/27
+ *  Author: Jimmy
+ */
 #ifndef UTILS_H
 #define UTILS_H
 #define _GNU_SOURCE
