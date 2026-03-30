@@ -1,8 +1,8 @@
 /*
  *  utils.h
- *  version 3.0
- *  Modified ver 4.0 on: 2025/4/1 
- *  Modified Content :affinity
+ *  version 5.0
+ *  Modified ver 5.0 on: 2025/4/1 
+ *  Modified Content :affinity, block padding,worker variable padding
  *  Author: Jimmy
  */
 #ifndef UTILS_H
@@ -21,10 +21,19 @@
 # define cols 16384
 # define CACHE_LINE_SIZE 64
 # define EXIT_FAILURE 1
+# define USE_PADDING 0 // 1: 有防禦，0: 無防禦
+# define USE_PADDING_WORKER 0 // 1: worker 裡面用局部變數 sum，0: worker 裡面直接寫入 thread_results[tid].local_sum
+
+# if USE_PADDING
 typedef struct  {
     double local_sum;
     alignas(CACHE_LINE_SIZE) long long final_count;
 } thread_data_t;
+#else
+    typedef struct {
+        volatile  double local_sum;
+    } thread_data_t;
+#endif
 // 等價於
 // typedef struct {
 //     double local_sum;

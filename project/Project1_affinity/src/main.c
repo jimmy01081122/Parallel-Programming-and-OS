@@ -91,7 +91,7 @@ int main (int argc, char *argv[]) {
     // ================= Affinity =========================
 
     // section 1
-    int core_map[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+    // int core_map[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
     // section 2
     // int core_map[] = {0, 2, 4, 6, 8, 10, 12, 14};
     
@@ -99,15 +99,15 @@ int main (int argc, char *argv[]) {
     //int core_map[] = {0, 1};
     
     
-    int map_size = sizeof(core_map) / sizeof(core_map[0]);
+    // int map_size = sizeof(core_map) / sizeof(core_map[0]);
     // ====================================================
         
     for (int i = 0; i < num_threads; i++) {
         thread_args[i].thread_id = i;
         // section 1
-        // thread_args[i].core_id = i;
+        thread_args[i].core_id = i;
         // section 2 & 3
-        thread_args[i].core_id = core_map[i % map_size];
+        // thread_args[i].core_id = core_map[i % map_size];
         
 
         thread_args[i].start_row = i * rows_per_thread;
