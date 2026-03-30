@@ -20,10 +20,15 @@ void* worker_task(void* arg) {
     // 2. Start work：只跑自己的 Rows
     for (size_t i = args->start_row; i < args->end_row; i++) {
         // Columns
+        float current_row_max = args->matrix[i * MATRIX_SIZE];
         for (size_t j = 0; j < MATRIX_SIZE; j++) {
             // 一維陣列模擬二維陣列的公式： 索引 = (行號 * 總列數) + 列號
             sum += args->matrix[i * MATRIX_SIZE + j];
+            if (args->matrix[i * MATRIX_SIZE + j] > current_row_max) {
+                current_row_max = args->matrix[i * MATRIX_SIZE + j];
+            }
         }
+        args->row_max_array[i] = current_row_max;
     }
 
     // 3. 計算完畢，把結果寫入專屬的記憶體位置 (已 Padding 過，不會有 False Sharing)

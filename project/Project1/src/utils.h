@@ -1,8 +1,8 @@
 /*
  *  utils.h
- *  version 2.0
- *  Modified ver 2.0 on: 2025/4/1 
- *  Modified Content : thread struct and worker func definition 
+ *  version 3.0
+ *  Modified ver 3.0 on: 2025/4/1 
+ *  Modified Content : row max array & benchmark & error detected & input thread number
  *  Created on: 2025/3/27
  *  Author: Jimmy
  */
@@ -39,6 +39,7 @@ typedef struct {
     size_t end_row;                // 負責計算的結束行 (不包含此行)
     float *matrix;                 // 整個矩陣的指標
     thread_data_t *thread_results; // 指向結果陣列
+    float *row_max_array;          // 指向每行最大值的陣列
 } thread_args_t;
 
 // func give to threads to execute
